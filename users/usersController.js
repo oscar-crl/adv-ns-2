@@ -17,3 +17,15 @@ exports.create = (req, res) => {
         }
     });
 }
+
+exports.user = async (req, res) => {
+    const user = await users.findOne({username: req.body.username});
+    if (!user) {
+        return res.status(400).send({message: "User not found"})
+    }
+    return res.send(user);
+}
+
+exports.test = (req, res) => {
+    return res.send('Test');
+}
